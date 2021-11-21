@@ -198,6 +198,8 @@ github.com/rogpeppe/go-internal v1.1.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFR
 github.com/rogpeppe/go-internal v1.3.0 h1:RR9dF3JtopPvtkroDZuVD7qquD0bnHlKSqaQhgwt8yk=
 github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=
 github.com/russross/blackfriday v1.5.2/go.mod h1:JO/DiYxRf+HjHt06OyowR9PTA263kcR/rfWxYHBV53g=
+github.com/serg666/accountstorage v0.0.0-20211121204437-2f6163619b7b h1:GchBENs8SwYvyy3chVhHjpkFtE3IiOiqcxnisu+/B6Q=
+github.com/serg666/accountstorage v0.0.0-20211121204437-2f6163619b7b/go.mod h1:laxMer03N2UXPNv5pFtmYvXgKKZVUl2em5+ZxdoHmQ0=
 github.com/shomali11/parallelizer v0.0.0-20180607005021-e11813c22f20/go.mod h1:HjzvRHgN5PGptIqjrdutIoZq4uCAemBTm/bGgnNLGiY=
 github.com/shomali11/util v0.0.0-20200329021417-91c54758c87b h1:vtWV9/bCF2tgRxv1R/tEENMwJaR8bXNhUimLMSUMVXw=
 github.com/shomali11/util v0.0.0-20200329021417-91c54758c87b/go.mod h1:89COV+EXrLrwQBk6nTUtYS5qVvTa2R0UMWSvUpHaX0Y=
