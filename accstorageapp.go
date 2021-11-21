@@ -3,7 +3,7 @@ package main
 import(
 	"io/ioutil"
 	"encoding/json"
-	"os"
+	//"os"
 	"log"
 	"regexp"
 	"net/http"
@@ -176,13 +176,16 @@ func auth_page(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		err = r.ParseForm()
 		if err == nil {
-			result, _ := contract.EvaluateTransaction("ParticipantExists", r.FormValue("email"))
+			result, err := contract.EvaluateTransaction("ParticipantExists", r.FormValue("email"))
+			log.Printf("Participant exists: %s %v\n", string(result), err)
 			if string(result) == "false" {
 				_, err = contract.SubmitTransaction("CreateParticipant", r.FormValue("email"), "name", "surname", "+79999999999", r.FormValue("password"))
+				log.Printf("Create participant: %v\n", err)
 				session.Values["authenticated"] = err == nil
 				session.Values["email"] = r.FormValue("email")
 			} else {
 				result, err := contract.EvaluateTransaction("ReadParticipant", r.FormValue("email"))
+				log.Printf("Read participant: %v\n", err)
 				if err == nil {
 					var participant chaincode.Participant
 					err = json.Unmarshal(result, &participant)
@@ -260,10 +263,10 @@ func populateWallet(wallet *gateway.Wallet) error {
 func main () {
 	log.SetPrefix("accstorageapp: ")
 	log.Println("============ application starts ============")
-	err = os.Setenv("DISCOVERY_AS_LOCALHOST", "true")
-	if err != nil {
-		log.Fatalf("Error setting DISCOVERY_AS_LOCALHOST environemnt variable: %v", err)
-	}
+	//err = os.Setenv("DISCOVERY_AS_LOCALHOST", "true")
+	//if err != nil {
+	//	log.Fatalf("Error setting DISCOVERY_AS_LOCALHOST environemnt variable: %v", err)
+	//}
 
 	wallet, err = gateway.NewFileSystemWallet("wallet")
 	if err != nil {
@@ -300,5 +303,5 @@ func main () {
 	http.HandleFunc("/auth", auth_page)
 	http.HandleFunc("/history/", makeHandler(historyHandler))
 	http.HandleFunc("/transfer/", makeHandler(transferHandler))
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe("192.168.0.107:9090", nil))
 }
