@@ -1,0 +1,22 @@
+<html>
+<head>
+	<title>Account storage app: {{.Title}}</title>
+</head>
+<body>
+<h1>Transfer units from account {{.Account.ID}}: {{.Account.Balance}} ({{.Account.Currency}})</h1>
+
+<form name="transfer" action="/transfer/{{.Account.ID}}" method="post">
+	recipient:
+	<select name="recipient">
+		{{ range .Chunks}}
+		<option value="{{.Email}}">{{.Email}}</option>
+		{{ end }}
+	</select>
+	amount: <input type="text" name="amount" value=""/>
+	<input type="submit"/>
+</form>
+
+<p>[<a href="/logout">Logout</a>]</p>
+
+</body>
+</html>
